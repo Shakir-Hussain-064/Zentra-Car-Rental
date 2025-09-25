@@ -36,7 +36,7 @@ const Cars = () => {
 
 
   const searchCarAvailability = async () => {
-    const {data} = await axios.post('/api/booking/check-availability', {location: pickupLocation, pickupDate, returnDate})
+    const {data} = await axios.post('/api/booking/check-availability', {location: pickupLocation, pickUpDate: pickupDate, returnDate})
     if(data.success){
       setFilteredCars(data.availableCars)
       if(data.availableCars.length === 0){
