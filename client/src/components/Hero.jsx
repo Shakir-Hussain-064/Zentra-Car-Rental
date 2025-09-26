@@ -7,7 +7,7 @@ const Hero = () => {
 
   const [pickupLocation, setPickupLocation] = useState('')
 
-  const { pickupDate, setPickupDate, returnDate, setReturnDate, navigate } = useAppContext();
+  const { pickupDate, setPickUpDate, returnDate, setReturnDate, navigate } = useAppContext();
 
   const handleSearch = (e) => {
     e.preventDefault()
