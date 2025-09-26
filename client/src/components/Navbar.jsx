@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { assets, menuLinks } from "../assets/assets";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAppContext } from "../context/Appcontext";
+import { useAppContext } from "../context/AppContext";
 import toast from "react-hot-toast";
 import {motion} from 'motion/react'
 
@@ -11,6 +11,7 @@ const Navbar = ({ShowLogin}) => {
 
   const location = useLocation();
   const [open, setOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
   const changeRole = async () => {
@@ -24,6 +25,28 @@ const Navbar = ({ShowLogin}) => {
        }
     } catch (error) {
       toast.error(error.message)
+    }
+  }
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      // Navigate to cars page with search query as URL parameter
+      navigate(`/cars?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery(''); // Clear search input after search
+      setOpen(false); // Close mobile menu after search
+    }
+  }
+
+  const handleSearchInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  }
+
+  const handleSearchIconClick = () => {
+    if (searchQuery.trim()) {
+      navigate(`/cars?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery('');
+      setOpen(false); // Close mobile menu after search
     }
   }
 
@@ -45,11 +68,39 @@ const Navbar = ({ShowLogin}) => {
           </Link>
         ))}
 
+        {/* Mobile search bar */}
+        <form onSubmit={handleSearch} className="flex lg:hidden items-center text-sm gap-2 border border-gray-600 px-3 py-2 rounded-full w-full max-w-xs bg-gray-700/50" >
+          <input 
+            type="text" 
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+            className="py-1 w-full bg-transparent outline-none placeholder-gray-400 text-gray-200" 
+            placeholder="Search cars..."
+          />
+          <img 
+            src={assets.search_icon} 
+            alt="search" 
+            className="cursor-pointer hover:opacity-80 transition-opacity"
+            onClick={handleSearchIconClick}
+          />
+        </form>
 
-        <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-600 px-3 rounded-full max-w-56 bg-gray-700/50" >
-          <input type="text" className="py-1.5 w-full bg-transparent outline-none placeholder-gray-400 text-gray-200" placeholder="Search Products"/>
-          <img src={assets.search_icon} alt="search" />
-        </div>
+        {/* Desktop search bar */}
+        <form onSubmit={handleSearch} className="hidden lg:flex items-center text-sm gap-2 border border-gray-600 px-3 rounded-full max-w-56 bg-gray-700/50" >
+          <input 
+            type="text" 
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+            className="py-1.5 w-full bg-transparent outline-none placeholder-gray-400 text-gray-200" 
+            placeholder="Search cars..."
+          />
+          <img 
+            src={assets.search_icon} 
+            alt="search" 
+            className="cursor-pointer hover:opacity-80 transition-opacity"
+            onClick={handleSearchIconClick}
+          />
+        </form>
 
         <div className="flex max-sm:flex-col items-start sm:items-center gap-6" >
 
