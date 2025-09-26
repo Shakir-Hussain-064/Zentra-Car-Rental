@@ -52,18 +52,32 @@ const Navbar = ({ShowLogin}) => {
 
 
   return (
-    <motion.div
-    initial={{y: -20, opacity: 0}}
-    animate={{y: 0, opacity: 1}} 
-    transition={{duration: 0.5}}
-    className={`flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 text-gray-300 border-b border-gray-700 relative transition-all bg-gray-800/90 backdrop-blur-sm`} >
+    <>
+      {/* Mobile menu backdrop */}
+      {open && (
+        <div 
+          className="sm:hidden fixed inset-0 bg-black/50 z-[9998]" 
+          onClick={() => setOpen(false)}
+        />
+      )}
+      
+      <motion.div
+      initial={{y: -20, opacity: 0}}
+      animate={{y: 0, opacity: 1}} 
+      transition={{duration: 0.5}}
+      className={`flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 text-gray-300 border-b border-gray-700 relative transition-all bg-gray-800/90 backdrop-blur-sm z-[9998]`} >
       <Link to="/">
         < motion.img whileHover={{scale: 1.05}} src={assets.logo} alt="logo" className="h-8" />
       </Link>
 
-      <div className={`max-sm:fixed max-sm:h-screen max-sm:w-full max-sm:top-16 max-sm:border-t border-gray-700 right-0 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 max-sm:p-4 transition-all duration-300 z-50 bg-gray-800 ${open ? "max-sm:translate-x-0" : "max-sm:-translate-x-full"} `} >
+      <div className={`max-sm:fixed max-sm:h-screen max-sm:w-full max-sm:top-16 max-sm:left-0 max-sm:border-t border-gray-700 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 max-sm:p-4 transition-all duration-300 z-[9999] bg-gray-800 ${open ? "max-sm:translate-x-0" : "max-sm:-translate-x-full"} `} >
         {menuLinks.map((link, index) => (
-          <Link key={index} to={link.path} className="text-gray-300 hover:text-white transition-colors">
+          <Link 
+            key={index} 
+            to={link.path} 
+            className="text-gray-300 hover:text-white transition-colors"
+            onClick={() => setOpen(false)}
+          >
             {link.name}
           </Link>
         ))}
@@ -104,9 +118,15 @@ const Navbar = ({ShowLogin}) => {
 
         <div className="flex max-sm:flex-col items-start sm:items-center gap-6" >
 
-          <button onClick={ ()=> isOwner ? navigate('/owner') : changeRole() } className="cursor-pointer text-gray-300 hover:text-white transition-colors" >{ isOwner ?  'Dashboard' : 'List cars'}</button>
+          <button onClick={ ()=> { 
+            setOpen(false); 
+            isOwner ? navigate('/owner') : changeRole(); 
+          }} className="cursor-pointer text-gray-300 hover:text-white transition-colors" >{ isOwner ?  'Dashboard' : 'List cars'}</button>
 
-          <button onClick={()=> { user ? logout() : setShowLogin(true)}} className="cursor-pointer px-8 py-2 bg-blue-600 hover:bg-blue-700 transition-all text-white rounded-lg" >{ user ? 'Logout' : 'Login'}</button>
+          <button onClick={()=> { 
+            setOpen(false); 
+            user ? logout() : setShowLogin(true);
+          }} className="cursor-pointer px-8 py-2 bg-blue-600 hover:bg-blue-700 transition-all text-white rounded-lg" >{ user ? 'Logout' : 'Login'}</button>
 
         </div>
       </div>
@@ -116,6 +136,7 @@ const Navbar = ({ShowLogin}) => {
       </button>
 
     </motion.div>
+    </>
   );
 };
 
