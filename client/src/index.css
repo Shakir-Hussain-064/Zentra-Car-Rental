@@ -6,9 +6,51 @@
   font-family: "Outfit", sans-serif;
 }
 
-@theme{
-  --color-primary: #2563EB;
-  --color-primary-dull: #1F58D8;
-  --color-light: #F1F5F9;
-  --color-borderColor: #c4c7d2;
+/* Set dark theme as default */
+html, body {
+  background-color: #303030;
+  color: #e5e5e5;
 }
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2a2a2a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+@theme{
+  --color-primary: #3B82F6;
+  --color-primary-dull: #2563EB;
+  --color-light: #2a2a2a;
+  --color-dark: #1a1a1a;
+  --color-card: #2d2d2d;
+  --color-border: #404040;
+  --color-text-primary: #e5e5e5;
+  --color-text-secondary: #a3a3a3;
+  --color-accent: #f8fafc;
+  --color-hover: #3a3a3a;
+  
+  /* Legacy support */
+  --color-borderColor: #404040;
+}
+
+/* Dark theme utility classes */
+.bg-dark-primary { background-color: #1a1a1a; }
+.bg-dark-secondary { background-color: #2a2a2a; }
+.bg-dark-card { background-color: #2d2d2d; }
+.text-dark-primary { color: #e5e5e5; }
+.text-dark-secondary { color: #a3a3a3; }
+.border-dark { border-color: #404040; }
+.hover-dark:hover { background-color: #3a3a3a; }

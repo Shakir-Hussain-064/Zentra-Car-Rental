@@ -72,7 +72,7 @@ const ManageCars = () => {
       <div className='max-w-3xl w-full rounded-md overflow-hidden border border-borderColor mt-6' >
 
         <table className='w-full border-collapse text-left text-sm text-gray-600'>
-            <thead className='text-gray-500'>
+            <thead className='text-gray-50'>
               <tr>
                 <th className='p-3 font-medium'>Car</th>
                 <th className='p-3 font-medium max-md:hidden'>Category</th>
@@ -102,9 +102,21 @@ const ManageCars = () => {
                     </span>
                   </td>
 
-                  <td className='flex items-center p-3'>
-                    <img onClick={() => toggleAvailability(car._id)} src={car.isAvailable ? assets.eye_close_icon : assets.eye_icon} alt="" className='cursor-pointer' />
-                    <img onClick={() => deleteCar(car._id)} src={assets.delete_icon} alt="" className='cursor-pointer' />
+                  <td className='flex items-center gap-2 p-3'>
+                    <button 
+                      onClick={() => toggleAvailability(car._id)} 
+                      className='bg-blue-100 hover:bg-blue-200 p-2 rounded-lg transition-colors'
+                      title={car.isAvailable ? 'Hide car' : 'Show car'}
+                    >
+                      <img src={car.isAvailable ? assets.eye_close_icon : assets.eye_icon} alt="" className='w-4 h-4' />
+                    </button>
+                    <button 
+                      onClick={() => deleteCar(car._id)} 
+                      className='bg-red-100 hover:bg-red-200 p-2 rounded-lg transition-colors'
+                      title='Delete car'
+                    >
+                      <img src={assets.delete_icon} alt="" className='w-4 h-4' />
+                    </button>
                   </td>
 
                 </tr>

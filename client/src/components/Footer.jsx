@@ -8,13 +8,13 @@ const Footer = () => {
     initial={{opacity: 0, y: 30}}
     whileInView={{opacity: 1, y: 0}}
     transition={{duration: 0.6}}
-    className='px-6 md:px-16 lg:px-24 xl:px-32 mt-60 text-sm text-gray-500'>
+    className='px-6 md:px-16 lg:px-24 xl:px-32 mt-45 text-sm text-gray-400 bg-gray-800'>
 
             <motion.div
             initial={{opacity: 0, y: 20}}
             whileInView={{opacity: 1, y: 0}}
             transition={{duration: 0.6, delay: 0.2}}
-            className='flex flex-wrap justify-between items-start gap-8 pb-6 border-borderColor border-b'>
+            className='flex flex-wrap justify-between items-start gap-8 pt-8 pb-6 border-gray-700 border-b'>
                 
                 <div>
                     <motion.img
@@ -51,7 +51,7 @@ const Footer = () => {
                 className='flex flex-wrap justify-between w-1/2 gap-8'>
 
                 <div>
-                    <h2 className='text-base font-medium text-gray-800 uppercase'>Quick Links</h2>
+                    <h2 className='text-base font-medium text-gray-200 uppercase'>Quick Links</h2>
                     <ul className='mt-3 flex flex-col gap-1.5'>
                         <li><a href="#"> Home </a></li>
                         <li><a href="#"> Browse Cars </a></li>
@@ -61,7 +61,7 @@ const Footer = () => {
                 </div>
 
                 <div>
-                    <h2 className='text-base font-medium text-gray-800 uppercase'> Resources </h2>
+                    <h2 className='text-base font-medium text-gray-200 uppercase'> Resources </h2>
                     <ul className='mt-3 flex flex-col gap-1.5'>
                         <li><a href="#"> Help Center </a></li>
                         <li><a href="#"> Terms of Services </a></li>
@@ -71,7 +71,7 @@ const Footer = () => {
                 </div>
 
                 <div>
-                    <h2 className='text-base font-medium text-gray-800 uppercase'> Contact </h2>
+                    <h2 className='text-base font-medium text-gray-200 uppercase'> Contact </h2>
                     <ul className='mt-3 flex flex-col gap-1.5'>
                         <li> 1234 Luxury Drive </li>
                         <li> California, CA 94028 </li>

@@ -31,7 +31,7 @@ const Sidebar = () => {
     }
 
   return (
-    <div className='relative min-h-screen md:flex flex-col items-center pt-8 max-w-13 md:max-w-60 w-full border-r border-borderColor text-sm' >
+    <div className='relative min-h-screen md:flex flex-col items-center pt-8 max-w-13 md:max-w-60 w-full border-r border-gray-700 text-sm bg-gray-800' >
       
       <div className='group relative'>
         <label htmlFor="image">
@@ -45,17 +45,17 @@ const Sidebar = () => {
       </div>
 
       {image && (
-        <button className='absolute top-0 right-0 flex p-2 gap-1 bg-primary/10 text-primary cursor-pointer' onClick={updateImage} > Save <img src={assets.check_icon} width={13} alt="" /> </button>
+        <button className='absolute top-0 right-0 flex p-2 gap-1 bg-blue-600/20 text-blue-400 cursor-pointer rounded' onClick={updateImage} > Save <img src={assets.check_icon} width={13} alt="" /> </button>
       )}
 
-      <p className='mt-2 text-base max-md:hidden'>{user?.name}</p>
+      <p className='mt-2 text-base max-md:hidden text-gray-200'>{user?.name}</p>
 
       <div className='w-full'>
         {ownerMenuLinks.map((link, index) => (
-            <NavLink key={index} to={link.path} className={`relative flex items-center gap-2 w-full py-3 pl-4 first:mt-6 ${link.path === location.pathname ? 'bg-primary/10 text-primary' : 'text-gray-600'} `} >
+            <NavLink key={index} to={link.path} className={`relative flex items-center gap-2 w-full py-3 pl-4 first:mt-6 ${link.path === location.pathname ? 'bg-blue-600/20 text-blue-400' : 'text-gray-400 hover:text-gray-200'} transition-colors`} >
                 <img src={link.path === location.pathname ? link.coloredIcon : link.icon} alt="car icon" />
                 <span className='max-md:hidden' > {link.name} </span>
-                <div className={`${link.path === location.pathname && 'bg-primary'  } w-1.5 h-8 rounded-l right-0 absolute`}>
+                <div className={`${link.path === location.pathname && 'bg-blue-500'  } w-1.5 h-8 rounded-l right-0 absolute`}>
 
                 </div>
             </NavLink>
