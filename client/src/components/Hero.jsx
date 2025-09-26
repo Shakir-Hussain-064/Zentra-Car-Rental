@@ -7,7 +7,7 @@ const Hero = () => {
 
   const [pickupLocation, setPickupLocation] = useState('')
 
-  const { pickupDate, setPickUpDate, returnDate, setReturnDate, navigate } = useAppContext();
+  const { pickupDate, setPickupDate, returnDate, setReturnDate, navigate } = useAppContext();
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -50,7 +50,15 @@ const Hero = () => {
             
                 <div className='flex flex-col items-start gap-2' >
                   <label htmlFor="return-date" className='text-gray-300'> Return Date.</label>
-                  <input value={returnDate} onChange={(e) => setReturnDate(e.target.value)} type="date" id="return-date" className='text-sm text-gray-200 bg-gray-700 border border-gray-600 rounded p-1' required />
+                  <input
+                    value={returnDate}
+                    onChange={(e) => setReturnDate(e.target.value)}
+                    type="date"
+                    id="return-date"
+                    min={pickupDate ? pickupDate : new Date().toISOString().split('T')[0]}
+                    className='text-sm text-gray-200 bg-gray-700 border border-gray-600 rounded p-1'
+                    required
+                  />
                 </div>
           </div>
 
